@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>It's the login page</h1>
+<form method="POST" action=""> 
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <legend>Reset Password</legend>
+    {{form.password.label}}
+    {{form.password }}
+
+    {{form.confirm_password.label}}
+    {{form.confirm_password }}
+    </fieldset>
+    
+    <button>{{form.submit}}</button>
+
+    {% for field, errors in form.errors.items() %}
+    <small class="form-text text-muted ">
+        {{field}}
+        {{ ', '.join(errors) }}
+    </small>
+    {% endfor %}
+</form>
+{% endblock content %}

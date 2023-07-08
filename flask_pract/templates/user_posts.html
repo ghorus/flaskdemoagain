@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Posts by {{user.username }} ({{posts.total}})</h1>
+{% for post in posts.items %}
+<fieldset>
+    <legend><img src="{{url_for('static', filename='profile_pics/' + post.author.image_file)}}"></legend>
+Date: {{ post.date_posted.strftime('%Y-%m-%d') }}
+Author: <a href="{{url_for('user_posts', username=post.author.username) }}">{{ post.author.username}}</a>
+Title: <h2><a href="{{url_for('post',post_id = post.id) }}">{{ post.title }}</a></h2>
+{{ post.content }}
+</fieldset>
+{% endfor %}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1,left_current=1,right_current=2) %}
+{% if page_num %}
+<a href="{{ url_for('user_posts',username = user.username, page=page_num)}}">{{page_num}}</a>
+{% else %}
+....
+{%endif %}
+{% endfor %}
+{% endblock content %}

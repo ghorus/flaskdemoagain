@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'account.css')}}">
+
+<div class="account-summary">
+    <img src="{{image_file}}" style="width:100px; border-radius:50%;">
+    <div class="username-email">
+        <h1 style="display:inline-block;">{{current_user.username}}</h1>
+        {{current_user.email}}
+    </div class="username-email">
+    
+</div>
+<form method="POST" action="" enctype="multipart/form-data"> 
+    <!--enctype is for passing image files into data correctly -->
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <legend>Account Information</legend>
+    <div class="input">
+        {{form.username.label }}
+        {{form.username}}
+    </div>
+
+    <div class="input">
+        {{form.email.label}}
+        {{form.email }}
+    </div>
+
+    <div class="input">
+        {{form.picture.label }}
+        {{form.picture}}
+    </div>
+
+    <div class="input">{{form.submit(class="btn")}}</div>
+
+    {% for field, errors in form.errors.items() %}
+    <small class="form-text text-muted ">
+        {{field}}
+        {{ ', '.join(errors) }}
+    </small>
+    {% endfor %}
+    </fieldset>
+
+</form>
+{% endblock content %}

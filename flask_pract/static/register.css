@@ -1,0 +1,47 @@
+fieldset {
+    width: 200px;
+    padding: 30px;
+}
+legend {
+    font-size: 25px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.reg-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+button ,.btn{
+    background-color: black;
+    color: white;
+    border: none;
+}
+button {
+    height: 30px;
+    width: 150px;
+    transition: 0.1s;
+}
+button:hover {
+    box-shadow: 5px 5px 5px gray;
+}
+
+button:active {
+    transform: translateY(10px);
+}
+
+.nav-items {
+    margin-top: 20px;
+}
+

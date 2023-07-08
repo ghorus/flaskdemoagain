@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>Welcome - {{title}} </title>
+    {% else %}
+    <title>Welcome!</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'layout.css')}}">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+     {% if messages %}
+        {% for message in messages %}
+           <h1>{{message}}</h1>
+           {% endfor %}
+     {% endif %}
+    {% endwith %}
+    {% if current_user.is_authenticated %}
+    <div class="nav">
+        <a href="{{ url_for('logout')}}">logout</a>
+        <a href="{{ url_for('home')}}">home</a>
+        <a href="{{ url_for('about')}}">about</a>
+        <a href="{{ url_for('account')}}">account</a>
+        <a href="{{ url_for('new_post')}}">create a post</a>
+    </div>
+    {% else %}
+    <div class="nav">
+        <a href="{{ url_for('register')}}">register</a>
+        <a href="{{ url_for('login')}}">login</a>
+        <a  class= "home" href="{{ url_for('home')}}">SCHPOOPLE</a>
+    </div>
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'create_post.css')}}">
+<div class="container">
+    <h1>Create gibberish!</h1>
+    <form method="POST" action=""> 
+        {% for field, errors in form.errors.items() %}
+        <small class="form-text text-muted ">
+            {{field}}
+            {{ ', '.join(errors) }}
+        </small>
+        {% endfor %}
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Your Post</legend>
+        {{form.title.label (class="label")}}
+        {{form.title (class="input")}}
+    
+        {{form.content.label(class="label")}}
+        {{form.content(class="content-input") }}
+        </fieldset>
+    
+        {{form.submit(class="btn")}}
+    </form>
+</div>
+{% endblock content %}

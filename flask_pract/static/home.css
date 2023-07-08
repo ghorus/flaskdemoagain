@@ -1,0 +1,8 @@
+.intro {
+    margin-left: 20px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+}

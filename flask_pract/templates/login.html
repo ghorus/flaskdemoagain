@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'register.css')}}">
+<div class="reg-container">
+    <form method="POST" action=""> 
+        {% for field, errors in form.errors.items() %}
+        <small class="form-text text-muted ">
+            {{field}}
+            {{ ', '.join(errors) }}
+        </small>
+        {% endfor %}
+        <h1>It's the login page</h1>
+        <!--blank action means will go back to same route-->
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Login</legend>
+        <div class="field">
+            {{form.email.label}}
+            {{form.email }}
+        </div>
+    
+        <div class="field">
+            {{form.password.label}}
+            {{form.password }}
+        </div>
+    
+        <div class="field">
+            {{form.remember.label}}
+            {{form.remember}}
+        </div>
+        <button>{{form.submit(class="btn")}}</button>
+        </fieldset>
+        <a class="nav-items" style="display:block;" href="{{url_for('reset_request')}}">Forgot Password?</a>
+        <a class="nav-items" href="{{url_for('login')}}">Already Have an Account?</a>
+    </form>
+</div>
+{% endblock content %}

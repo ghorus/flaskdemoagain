@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'register.css')}}">
+<div class="reg-container">
+    <h1>Start posting some gibberish today!</h1>
+    <form method="POST" action=""> 
+        {{ form.hidden_tag() }}
+        {% for field, errors in form.errors.items() %}
+        <small class="form-text text-muted ">
+            {{field}}
+            {{ ', '.join(errors) }}
+        </small>
+        {% endfor %}
+        <fieldset>
+            <legend>Register Today</legend>
+        <div class="field">
+            {{form.username.label }}
+            {{form.username}}
+        </div>
+    
+        <div class="field">
+            {{form.email.label}}
+            {{form.email }}
+        
+        </div>
+        <div class="field">
+            {{form.password.label}}
+            {{form.password }}
+        
+        </div>
+    
+        <div class="field">
+            {{form.confirm_password.label}}
+            {{form.confirm_password}}
+        </div>
+        <button>{{form.submit(class="btn")}}</button>
+        </fieldset>
+    </form>
+    <h1><a href="{{ url_for('login') }}">Already have an account?</a></h1>
+</div>
+{% endblock content %}
