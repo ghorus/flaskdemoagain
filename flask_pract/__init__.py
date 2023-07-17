@@ -5,9 +5,10 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 
+import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dbc761867601a6df37da071b55b8128d'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 
 db= SQLAlchemy(app)
 bcrypt = Bcrypt(app)
